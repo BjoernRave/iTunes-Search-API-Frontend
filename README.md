@@ -1,2 +1,14 @@
 # iTunes-Search-API-Frontend
-This is a small Project I created for an Interview Test
+
+
+I created this app with Create-React-App
+
+To run it just clone the repo, run 
+
+`npm install`
+
+and then 
+
+`npm start`
+
+and you are set. For some reason I have some CORS problem when using this app on Firefox
