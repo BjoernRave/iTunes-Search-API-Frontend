@@ -14,30 +14,34 @@ class DetailPage extends Component {
     super(props);
 
     this.state = {
-      songIndex: Number(String(this.props.location.pathname).slice(7))
+      // songIndex: Number(String(this.props.location.pathname).slice(7))
     };
     this.changeTrack = this.changeTrack.bind(this);
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps !== this.props) {
-      this.setState({
-        songIndex: Number(String(this.props.location.pathname).slice(7))
-      });
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps !== this.props) {
+  //     this.setState({
+  //       songIndex: Number(String(this.props.location.pathname).slice(7))
+  //     });
+  //   }
+  // }
 
   changeTrack(dir) {
     if (dir === 1) {
-      this.props.history.push("/songs/" + (this.state.songIndex + 1));
+      this.props.history.push(
+        "/songs/" + (Number(this.props.match.params.id) + 1)
+      );
     } else {
-      this.props.history.push("/songs/" + (this.state.songIndex - 1));
+      this.props.history.push(
+        "/songs/" + (Number(this.props.match.params.id) - 1)
+      );
     }
   }
 
   render() {
     console.log("Detail rendered");
-    const song = this.props.results[this.state.songIndex];
+    const song = this.props.results[this.props.match.params.id];
     const socialMsg = `Check out the song "${song.trackName}" from "${
       song.artistName
     }" on iTunes: `;
@@ -89,7 +93,7 @@ class DetailPage extends Component {
         <Player
           url={song.previewUrl}
           changeTrack={this.changeTrack}
-          index={this.state.songIndex}
+          index={this.props.match.params.id}
         />
       </>
     );
